@@ -1,3 +1,4 @@
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -8,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9i%&$&mk@3_@c$@a3n0)henzvf=&5d7rfydksgo!4+i3=80r7('
+SECRET_KEY = 'django-insecure-e5gbjnu#y^v%do7^fb(81#mf0171r7=$q41a^*u83w%yz3vsf2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,10 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # add
     'rest_framework',
-    # my
-    'todo',
+    'django_filters',
+    'userwork',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'DZ_3.urls'
+ROOT_URLCONF = 'DZ_4.urls'
 
 TEMPLATES = [
     {
@@ -60,7 +60,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'DZ_3.wsgi.application'
+WSGI_APPLICATION = 'DZ_4.wsgi.application'
 
 
 # Database
@@ -114,3 +114,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ADD
+# -----------------------------------------------------------
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
+}
